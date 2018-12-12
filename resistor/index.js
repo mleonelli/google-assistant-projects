@@ -1,16 +1,3 @@
-// Copyright 2018, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the 'License');
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an 'AS IS' BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 'use strict';
 
 // Import the Dialogflow module and response creation dependencies
@@ -180,6 +167,20 @@ app.intent(['favorite color - yes', 'favorite fake color - yes'], (conv) => {
   // If the user is using a screened device, display the carousel
   if (conv.screen) return conv.ask(fakeColorCarousel());
 });
+
+function calcOhms() {
+	var form = document.forms[0]
+  	var d1 = form.tensSelect.selectedIndex
+	var d2 = form.onesSelect.selectedIndex
+	var m = form.multiplierSelect.selectedIndex
+	var t = form.toleranceSelect.selectedIndex
+    var ohmage = (d1 * 10) + d2
+	ohmage = eval("" + ohmage + "e" + multiplier[m])
+	ohmage = format(ohmage)
+	var tol = tolerance[t]
+	document.forms[1].result.value = ohmage + ", " + tol
+}
+
 
 // Set the DialogflowApp object to handle the HTTPS POST request.
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
