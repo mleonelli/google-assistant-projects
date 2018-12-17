@@ -29,7 +29,7 @@ const mulitplierBandIT = {
 
 // Define temperature band associations
 const temperatureBandIT = {
-  'nero': '200 ppm/°K', 'marrone': '100 ppm/°K', 'rosso': '50 ppm/°K'	,'arancio': '25 ppm/°K', 'arancione': '25 ppm/°K','giallo': '15 ppm/°K'	, 'viola': '5 ppm/°K', 'grigio': '1 ppm/°K'
+  'nero': '200', 'marrone': '100', 'rosso': '50'	,'arancio': '25', 'arancione': '25','giallo': '15'	, 'viola': '5', 'grigio': '1'
 };
 
 // Define tolerance band association
@@ -42,16 +42,16 @@ app.intent('resistor value', (conv, {band1, band2, band3, band4, band5, band6}) 
     if(band6 === null || band6 === ''){
        if(band5 === null || band5 === ''){
             conv.close(`<speak>` + calc4bands(band1, band2, band3, band4) + 
-             `Grazie di aver usato il servizio.</speak>`);
+             `Grazie per aver usato il servizio.</speak>`);
         } 
         else{
             conv.close(`<speak>` + calc5bands(band1, band2, band3, band4, band5) + 
-             `Grazie di aver usato il servizio.</speak>`);
+             `Grazie per aver usato il servizio.</speak>`);
         }
     }
     else{
         conv.close(`<speak>` + calc4bands(band1, band2, band3, band4, band5, band6) + 
-             `Grazie di aver usato il servizio.</speak>`);
+             `Grazie per aver usato il servizio.</speak>`);
     }
   
   //conv.ask(new Suggestions('Yes', 'No'));
@@ -83,7 +83,7 @@ function convertToValue(band){
 }
 
 function convertTolerance(band, n){
-  return toleranceBand4IT[band];
+  return toleranceBand4IT[band] + " <sub alias='parti per milione per grado Kelvin'>ppm/°K</sub>";
 }
 
 function addMultiplier(ohm, multiplier){
@@ -99,13 +99,13 @@ function convertToTemperature(band){
 function format(ohmage) {
 	if (ohmage >= 10e5) {
 		ohmage /= 10e5;
-		return "" + ohmage + " Mohms";
+		return "" + ohmage + " <sub alias='mega om'>MΩ</sub>";
 	} else {
 		if (ohmage >= 10e2) {
 			ohmage /= 10e2;
-			return "" + ohmage + " Kohms";
+			return "" + ohmage + " <sub alias='chilo om'>KΩ</sub>";
 		} else {
-			return "" + ohmage + " ohms";
+			return "" + ohmage + " <sub alias='om'>Ω</sub>";
 		}
 	}
 }
