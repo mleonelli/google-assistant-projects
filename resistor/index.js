@@ -83,7 +83,7 @@ function convertToValue(band){
 }
 
 function convertTolerance(band, n){
-  return toleranceBand4IT[band] + " <sub alias='parti per milione per grado Kelvin'>ppm/°K</sub>";
+  return toleranceBand4IT[band];
 }
 
 function addMultiplier(ohm, multiplier){
@@ -93,7 +93,7 @@ function addMultiplier(ohm, multiplier){
 }
 
 function convertToTemperature(band){
-  return temperatureBandIT[band];
+  return temperatureBandIT[band]+ " <sub alias='parti per milione per grado Kelvin'>ppm/°K</sub>";
 }
 
 function format(ohmage) {
