@@ -50,7 +50,7 @@ app.intent('resistor value', (conv, {band1, band2, band3, band4, band5, band6}) 
         }
     }
     else{
-        conv.close(`<speak>` + calc4bands(band1, band2, band3, band4, band5, band6) + 
+        conv.close(`<speak>` + calc6bands(band1, band2, band3, band4, band5, band6) + 
              `Grazie per aver usato il servizio.</speak>`);
     }
   
